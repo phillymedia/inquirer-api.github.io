@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swagger UI</title>
+
+    <!-- Load Swagger UI CSS -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@3.52.0/swagger-ui.css" />
+
+    <style>
+        /* Optional: Add some styling to the page */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #swagger-ui {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Create a container for Swagger UI -->
+    <div id="swagger-ui"></div>
+
+    <!-- Load Swagger UI JavaScript -->
+    <script src="https://unpkg.com/swagger-ui-dist@3.52.0/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@3.52.0/swagger-ui-standalone-preset.js"></script>
+
+    <script>
+        // Function to load Swagger UI with your Swagger file
+        function initSwaggerUI() {
+            // Specify the URL to your Swagger file
+            var swaggerFileUrl = 'URL_TO_YOUR_SWAGGER_FILE.json';
+
+            // Create a Swagger UI instance
+            const ui = SwaggerUIBundle({
+                url: swaggerFileUrl,
+                dom_id: '#swagger-ui',
+                presets: [
+                    SwaggerUIBundle.presets.apis,
+                    SwaggerUIStandalonePreset
+                ],
+                layout: 'StandaloneLayout'
+            });
+
+            // Optionally, customize the look and feel
+            ui.initOAuth({
+                clientId: "your-client-id",
+                clientSecret: "your-client-secret",
+                realm: "your-realm",
+                appName: "your-app-name",
+                scopeSeparator: " ",
+                additionalQueryStringParams: {}
+            });
+        }
+
+        // Call the function to initialize Swagger UI
+        initSwaggerUI();
+    </script>
+
+</body>
+</html>
